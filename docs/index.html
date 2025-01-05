@@ -6,126 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر الحلاقة العصري</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* التصميم السابق كما هو مع تحسينات طفيفة */
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f0f0f0, #eaeaea);
-            color: #333;
-            padding-top: 60px;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px;
-            color: white;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .services-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .service-card .price {
-            font-size: 1.2rem;
-            color: #ff6f00;
-            margin-top: 10px;
-        }
-
-        .modify-price-form {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        footer {
-            background: linear-gradient(90deg, #ffcc00, #270479);
-            color: white;
-            text-align: center;
-            padding: 10px 20px;
-            margin-top: 20px;
-        }
-
-        header {
-            background: linear-gradient(180deg, #ffcc00, #270479);
-            color: white;
-            text-align: center;
-            padding: 10px 20px;
-            margin-top: 20px;
-        }
-
-        nav {
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 10px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #270479;
-            transform: scale(1.1);
-        }
-
-        .container {
-            padding: 20px;
-            display: none;
-            animation-duration: 1s;
-        }
-
-        .container.active {
-            display: block;
-            animation-name: fadeIn;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>متجر الحلاقة العصري</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* التصاميم الخاصة بـ CSS كما وضحتها سابقًا */
+    
+            /* التصميم الأساسي */
+            body {
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(135deg, #f0f0f0, #eaeaea);
+                color: #333;
+                padding-top: 60px; /* لإفساح المجال للقائمة */
             }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
+    
+            header {
+                text-align: center;
+                background: linear-gradient(180deg, #ffcc00, #270479);
+                color: white;
+                padding: 10px 20px;
             }
-        }
-
-        #div1 {
-            background: linear-gradient(90deg, #ffcc00, #270479);
-            color: white;
-            text-align: center;
-            padding: 10px 20px;
-            margin-top: 20px;
-        }
-
-        .edit-icon {
-            cursor: pointer;
-            color: #007bff;
-            font-size: 1.5rem;
-        }
-
-        .edit-icon:hover {
-            color: #0056b3;
-        }
-    </style>
-</head>
+    
+            nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: space-around;
+                padding: 10px;
+                color: white;
+                z-index: 1000;
+                backdrop-filter: blur(5px);
+            }
+    
+            .services-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+    
+            .service-card {
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 250px;
+                margin: 10px;
+                text-align: center;
+                padding: 10px;
+            }
+    
+            .service-card img {
+                width: 100%;
+                height: auto;
+                border-radius: 5px;
+            }
+    
+            footer {
+                background: linear-gradient(90deg, #ffcc00, #270479);
+                color: white;
+                text-align: center;
+                padding: 10px 20px;
+                margin-top: 20px;
+            }
+    
+            /* استعلامات الوسائط لتناسب الأجهزة المختلفة */
+            @media screen and (max-width: 768px) {
+                .services-container {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+    
+                nav {
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+    
+                header {
+                    padding: 15px 10px;
+                }
+    
+                .service-card {
+                    width: 90%;
+                    margin: 10px auto;
+                }
+    
+                footer {
+                    padding: 15px 10px;
+                }
+            }
+    
+            @media screen and (max-width: 480px) {
+                nav {
+                    padding: 8px;
+                }
+    
+                .service-card {
+                    width: 100%;
+                    margin: 10px 0;
+                    padding: 15px 10px;
+                }
+    
+                footer {
+                    font-size: 12px;
+                    padding: 10px 5px;
+                }
+            }
+            #div1{
+                background: linear-gradient(90deg, #ffcc00, #270479);
+                color: white;
+                text-align: center;
+                padding: 10px 20px;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
 
 <body>
     <header>
@@ -138,7 +138,7 @@
         <p>نقدم أفضل خدمات الحلاقة والعناية بالمظهر باستخدام أحدث التقنيات.</p>
     </header>
 
-    <div id="div1">
+    
         <!-- خدماتنا -->
         <section id="services" class="services">
             <h2>خدماتنا</h2>
@@ -147,8 +147,8 @@
             </div>
         </section>
     </div>
-
-    <!-- قسم التعليقات -->
+    <div id="div1">
+   <div id="div1"> <!-- قسم التعليقات -->
     <div id="div1">
         <section id="comments" class="comments-section">
             <h3>تعليقات العملاء</h3>
@@ -179,7 +179,7 @@
             <p>PHONE:<a href="tel:+96170870019">+96170870019</a></p>
         </section>
     </div>
-
+   </div>
     <footer>
         <p class="animate_animated animate_fadeInUp">© 2024 جميع الحقوق محفوظة - By Kamal al dannawi</p>
     </footer>
