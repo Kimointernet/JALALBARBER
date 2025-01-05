@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الحلاقة العصري</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* التصميم السابق كما هو مع تحسينات طفيفة */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f0f0, #eaeaea);
+            color: #333;
+            padding-top: 60px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            color: white;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .service-card .price {
+            font-size: 1.2rem;
+            color: #ff6f00;
+            margin-top: 10px;
+        }
+
+        .modify-price-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #ffcc00, #270479);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        header {
+            background: linear-gradient(180deg, #ffcc00, #270479);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #270479;
+            transform: scale(1.1);
+        }
+
+        .container {
+            padding: 20px;
+            display: none;
+            animation-duration: 1s;
+        }
+
+        .container.active {
+            display: block;
+            animation-name: fadeIn;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #div1 {
+            background: linear-gradient(90deg, #ffcc00, #270479);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        .edit-icon {
+            cursor: pointer;
+            color: #007bff;
+            font-size: 1.5rem;
+        }
+
+        .edit-icon:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#services">الخدمات</a>
+            <a href="#comments">التعليقات</a>
+            <a href="#call">اتصل بنا</a>
+        </nav>
+        <h1>مرحبًا بكم في متجر الحلاقة العصري</h1>
+        <p>نقدم أفضل خدمات الحلاقة والعناية بالمظهر باستخدام أحدث التقنيات.</p>
+    </header>
+
+    <div id="div1">
+        <!-- خدماتنا -->
+        <section id="services" class="services">
+            <h2>خدماتنا</h2>
+            <div class="services-container" id="services-container">
+                <!-- سيتم ملء المحتوى ديناميكيًا عبر JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- قسم التعليقات -->
+    <div id="div1">
+        <section id="comments" class="comments-section">
+            <h3>تعليقات العملاء</h3>
+            <div id="comment-list"></div>
+            <input type="text" id="comment-input" placeholder="اترك تعليقك هنا...">
+            <button onclick="addComment()">أضف تعليق</button>
+        </section>
+
+        <!-- قسم تعديل الأسعار -->
+        <section class="admin-section">
+            <h3>تعديل الأسعار</h3>
+            <input type="password" id="admin-password" placeholder="أدخل كلمة المرور">
+            <button onclick="validatePassword()">دخول</button>
+            <div class="modify-price-form" id="modify-price-form" style="display:none">
+                <select id="service-select">
+                    <!-- سيتم ملء الخيارات ديناميكيًا -->
+                </select>
+                <input type="text" id="new-price" placeholder="السعر الجديد">
+                <button onclick="savePrice()">حفظ السعر الجديد</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="div1">
+        <section id="call" class="call">
+            <h2>اتصل بنا</h2>
+            <h2>JALAL AL KHALIDI:</h2>
+            <p>PHONE:<a href="tel:+96170870019">+96170870019</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p class="animate_animated animate_fadeInUp">© 2024 جميع الحقوق محفوظة - By Kamal al dannawi</p>
+    </footer>
+
+    <script>
+        const correctPassword = 'admin123'; // كلمة المرور
+        let services = JSON.parse(localStorage.getItem('services')) || [
+            { name: "قص الشعر", price: "3 $", image: "https://i.imgur.com/AA6Dqba.jpeg" },
+            { name: "تصفيف اللحية", price: "2 $", image: "https://i.imgur.com/MeaxcMp.jpeg" },
+            { name: "العناية بالبشرة", price: "5 $", image: "https://i.imgur.com/mYdj8o8.jpeg" },
+        ];
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        // عرض الخدمات مع الأسعار
+        function displayServices() {
+            const container = document.getElementById('services-container');
+            container.innerHTML = '';
+            services.forEach((service, index) => {
+                const card = `
+                    <div class="service-card">
+                        <img src="${service.image}" alt="${service.name}">
+                        <div class="info">
+                            <h3>${service.name}</h3>
+                            <p class="price">${service.price}</p>
+                            <span class="edit-icon" onclick="editPrice(${index})"></span>
+                        </div>
+                    </div>`;
+                container.innerHTML += card;
+
+                // تحديث قائمة التعديل
+                const serviceSelect = document.getElementById('service-select');
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = service.name;
+                serviceSelect.appendChild(option);
+            });
+        }
+
+        // عرض التعليقات
+        function displayComments() {
+            const commentList = document.getElementById('comment-list');
+            commentList.innerHTML = '';
+            comments.forEach(comment => {
+                const commentElement = `
+                    <div class="comment">
+                        <p>${comment.text}</p>
+                        <strong>- ${comment.author || 'مجهول'}</strong>
+                    </div>`;
+                commentList.innerHTML += commentElement;
+            });
+        }
+
+        // إضافة تعليق
+        function addComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            if (!text) {
+                alert("يرجى إدخال تعليق!");
+                return;
+            }
+            comments.push({ text, author: "عميل" });
+            localStorage.setItem('comments', JSON.stringify(comments));
+            displayComments();
+            input.value = '';
+        }
+
+        // التحقق من كلمة المرور
+        function validatePassword() {
+            const password = document.getElementById('admin-password').value; // قراءة كلمة المرور
+            if (password === correctPassword) {
+                alert('تم تسجيل الدخول بنجاح!');
+                document.getElementById('modify-price-form').style.display = 'block'; // عرض النموذج
+                document.getElementById('admin-password').value = ''; // تفريغ حقل كلمة المرور
+            } else {
+                alert('كلمة المرور خاطئة!');
+            }
+        }
+
+        // تعديل السعر
+        function editPrice(index) {
+            const newPrice = prompt("أدخل السعر الجديد للـ " + services[index].name, services[index].price);
+            if (newPrice) {
+                services[index].price = newPrice;
+                localStorage.setItem('services', JSON.stringify(services)); // حفظ التعديلات
+                alert("تم تحديث السعر بنجاح!");
+                displayServices(); // تحديث عرض الخدمات بعد التعديل
+            }
+        }
+
+        // حفظ السعر الجديد
+        function savePrice() {
+            const selectedServiceIndex = document.getElementById('service-select').value;
+            const newPrice = document.getElementById('new-price').value.trim();
+            if (!newPrice || isNaN(newPrice)) {
+                alert("يرجى إدخال سعر صالح!");
+                return;
+            }
+            services[selectedServiceIndex].price = newPrice + " $";  // تحديث السعر
+            localStorage.setItem('services', JSON.stringify(services));  // حفظ التعديلات
+            alert("تم تحديث السعر بنجاح!");
+            displayServices();
+        }
+
+        // عند تحميل الصفحة
+        window.onload = function () {
+            displayServices();
+            displayComments();
+        };
+    </script>
+</body>
+
+</html>
